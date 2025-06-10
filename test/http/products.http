@@ -1,0 +1,47 @@
+@productId=4a43aef4-24ad-4378-91b8-807707a1fade
+@localhost=localhost:4004/odata/v4/main
+
+GET http://{{localhost}}/Products?$filter=id eq {{productId}}
+Content-Type: application/json
+
+###
+
+# entity Products {
+#     key id: UUID;
+#         name: String(255);
+#         price: Decimal(15,2);
+# }
+
+POST http://{{localhost}}/Products
+Content-Type: application/json
+
+{
+    "id":"{{productId}}",
+    "name":"Notebook",
+    "price": 2300
+}
+
+
+###
+
+DELETE http://{{localhost}}/Products(id={{productId}})
+Content-Type: application/json
+
+###
+
+PUT http://{{localhost}}/Products(id={{productId}})
+Content-Type: application/json
+
+{
+    "price": 3500
+}
+
+
+###
+
+PATCH http://{{localhost}}/Products(id={{productId}})
+Content-Type: application/json
+
+{
+    "name":"Iphone 15"
+}
