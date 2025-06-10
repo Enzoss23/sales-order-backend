@@ -1,0 +1,25 @@
+@localhost=localhost:4004/odata/v4/main
+
+GET http://{{localhost}}/SalesOrderHeaders
+Content-Type: application/json
+
+###
+
+POST http://localhost:4004/odata/v4/main/SalesOrderHeaders
+Content-Type: application/json
+
+{}
+
+###
+
+DELETE http://localhost:4004/odata/v4/main/SalesOrderHeaders(id=c23a8804-d5a0-49fe-aa79-3a0a1aba2ca4)
+Content-Type: application/json
+
+###
+
+PUT http://localhost:4004/odata/v4/main/SalesOrderHeaders(id=ce4c1d28-53c5-4228-88cc-a70f00a2fe2c)
+Content-Type: application/json
+
+{
+    "modifiedBy": "teste"
+}
