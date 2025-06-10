@@ -76,3 +76,13 @@ Content-Type: application/json
 #         name: String(255);
 #         price: Decimal(15,2);
 # }
+
+###
+# Busca por pedidos maiores ou iguais a 2 milhões valor
+GET http://{{localhost}}/SalesOrderHeaders?$filter=totalAmount ge 2000000&$expand=items
+Content-Type: application/json
+
+###
+# Busca por pedidos maiores ou iguais a 200k valor
+GET http://{{localhost}}/SalesOrderHeaders?$filter=totalAmount le 200000&$expand=items
+Content-Type: application/json

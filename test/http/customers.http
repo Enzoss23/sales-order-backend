@@ -49,3 +49,7 @@ Content-Type: application/json
 #         lastName: String(100);
 #         email: String(255);   
 # }
+
+###
+GET http://{{localhost}}/Customers?$filter=endswith(firstName, '-24383571')
+Content-Type: application/json
