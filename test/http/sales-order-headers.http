@@ -1,6 +1,9 @@
 @localhost=localhost:4004/odata/v4/main
+@id=c23a8804-d5a0-49fe-aa79-3a0a1aba2ca4
+@customerId=e3658bcd-2f99-47c7-ae07-0846f01ea7a8
+@productId=4a43aef4-24ad-4378-91b8-807707a1fade
 
-GET http://{{localhost}}/SalesOrderHeaders
+GET http://{{localhost}}/SalesOrderHeaders?$filter=id eq {{id}}&$expand=items
 Content-Type: application/json
 
 ###
@@ -8,18 +11,68 @@ Content-Type: application/json
 POST http://localhost:4004/odata/v4/main/SalesOrderHeaders
 Content-Type: application/json
 
-{}
+{
+    "id": "{{id}}",
+    "customer_id":"{{customerId}}",
+    "totalAmount":398,
+    "items": [
+        {
+            "id":"a95c1e7d-45d1-4409-90b9-725a962b9c09",
+            "header_id":"{{id}}",
+            "product_id":"{{productId}}",
+            "quantity": 10,
+            "price": 2.99
+        },
+
+        {
+            "id":"34e9db1a-8799-4711-b83f-d60a148840fb",
+            "header_id":"{{id}}",
+            "product_id":"{{productId}}",
+            "quantity": 20,
+            "price": 4.99
+        }        
+    ] 
+}
 
 ###
 
-DELETE http://localhost:4004/odata/v4/main/SalesOrderHeaders(id=c23a8804-d5a0-49fe-aa79-3a0a1aba2ca4)
+DELETE http://localhost:4004/odata/v4/main/SalesOrderHeaders(id={{id}})
 Content-Type: application/json
 
 ###
 
-PUT http://localhost:4004/odata/v4/main/SalesOrderHeaders(id=ce4c1d28-53c5-4228-88cc-a70f00a2fe2c)
+PUT http://localhost:4004/odata/v4/main/SalesOrderHeaders(id={{id}})
 Content-Type: application/json
 
 {
     "modifiedBy": "teste"
 }
+
+
+# entity SalesOrderHeaders: managed {
+#     key id: UUID;
+#         customer: Association to Customers;
+#         totalAmount: Decimal(15,2);
+#         items: Composition of many SalesOrderItems on items.header = $self; //$self referenciando a propria entidade
+# }
+
+# entity SalesOrderItems {
+#     key id: UUID;
+#         header: Association to SalesOrderHeaders;
+#         product: Association to Products;
+#         quantity: Integer;
+#         price: Decimal(15,2);
+# }
+
+# entity Customers {
+#     key id: UUID;
+#         firstName: String(20);
+#         lastName: String(100);
+#         email: String(255);   
+# }
+
+# entity Products {
+#     key id: UUID;
+#         name: String(255);
+#         price: Decimal(15,2);
+# }
