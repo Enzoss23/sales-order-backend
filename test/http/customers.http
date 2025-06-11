@@ -59,3 +59,9 @@ Content-Type: application/json
 # Buscando dados com $search
 GET http://{{localhost}}/Customers?$search=374
 Content-Type: application/json
+
+###
+
+# Ordenando dados com $orderby
+GET http://{{localhost}}/Customers?$orderby=firstName,lastName desc
+Content-Type: application/json
