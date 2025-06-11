@@ -86,3 +86,13 @@ Content-Type: application/json
 # Busca por pedidos maiores ou iguais a 200k valor
 GET http://{{localhost}}/SalesOrderHeaders?$filter=totalAmount le 200000&$expand=items
 Content-Type: application/json
+
+###
+# Expandindo os items, produto e customers
+GET http://{{localhost}}/SalesOrderHeaders?$filter=totalAmount ge 200000&$expand=items($expand=product;$filter=quantity le 30),customer
+Content-Type: application/json
+
+###
+# Selecionar somente customer e id do sales order header
+GET http://{{localhost}}/SalesOrderHeaders?$select=customer&$expand=customer($select=email)
+Content-Type: application/json
