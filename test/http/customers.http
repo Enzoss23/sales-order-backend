@@ -39,8 +39,8 @@ PATCH http://{{localhost}}/Customers(id={{id}})
 Content-Type: application/json
 
 {
-    "firstName": "Erick",
-    "email":"erickss174@gmail.com"
+    "firstName": "Joelson",
+    "email":"joelson11@hotmail.com"
 }
 
 # entity Customer {
@@ -57,7 +57,7 @@ Content-Type: application/json
 ###
 
 # Buscando dados com $search
-GET http://{{localhost}}/Customers?$search=374
+GET http://{{localhost}}/Customers?$search=Joelson
 Content-Type: application/json
 
 ###
