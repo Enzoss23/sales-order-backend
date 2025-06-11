@@ -106,3 +106,8 @@ Content-Type: application/json
 # Paginando os Registros
 GET http://{{localhost}}/SalesOrderHeaders?$skip=5&$top=3   
 Content-Type: application/json
+
+###
+# Buscando dados com $search
+GET http://{{localhost}}/SalesOrderHeaders?$search=org&$filter=totalAmount eq 12853185.15
+Content-Type: application/json
