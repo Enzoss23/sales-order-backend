@@ -13,9 +13,9 @@
   integrity sha512-E0uVAXmYz8X7O4Pf/ZveECi+qPUl2X/o4BQRlGNstxhvUfrNHmADZR1N3RJvKxO5wOGfaZuJtY+fg7diU9tnAw==
 
 "@cap-js/db-service@^2":
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/@cap-js/db-service/-/db-service-2.1.1.tgz#1cc1ad263707895e592eabadc6bf81c40815cef7"
-  integrity sha512-lkT8hQtMGLOWpbZzSWoMfoZe4vByuJZ9PierJPIhgLbayMLyTQ8iMKNgme1FW3nXFPc7JMJlEImskmhOygllAQ==
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/@cap-js/db-service/-/db-service-2.1.2.tgz#06066addaec529e32c1728ca8a0e0f35cb79202f"
+  integrity sha512-wbbEhUaSnQnYSC2029CO8MLAag5k/mJAtu6nyJUYfZbjkfr/JnP9lG5ylHg1dQtjRfAjPds+lxZIo35DHwNsVQ==
   dependencies:
     generic-pool "^3.9.0"
 
@@ -179,9 +179,9 @@
     axios "*"
 
 "@types/node@^24.0.0":
-  version "24.0.0"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-24.0.0.tgz#14a278ce74dd33993f2c4e5dd614760728c0fba8"
-  integrity sha512-yZQa2zm87aRVcqDyH5+4Hv9KYgSdgwX1rFnGvpbzMaC7YAljmhBET93TPiTd3ObwTL+gSpIzPKg5BqVxdCvxKg==
+  version "24.0.1"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-24.0.1.tgz#e9bfcb1c35547437c294403b7bec497772a88b0a"
+  integrity sha512-MX4Zioh39chHlDJbKmEgydJDS3tspMP/lnQC67G3SWsTnb9NeYVWOjkxpOSy4oMfPs4StcWHwBrvUb4ybfnuaw==
   dependencies:
     undici-types "~7.8.0"
 
@@ -1102,9 +1102,9 @@ toidentifier@1.0.1:
   integrity sha512-o5sSPKEkg/DIQNmH43V0/uerLrpzVedkUh8tGNvaeXpfpuwjKenlSox/2O/BTlZUtEe+JG7s5YhEz608PlAHRA==
 
 tsx@^4.20.1:
-  version "4.20.1"
-  resolved "https://registry.yarnpkg.com/tsx/-/tsx-4.20.1.tgz#f5ef9a5d4839184e4216064e3655cc9a65761986"
-  integrity sha512-JsFUnMHIE+g8KllOvWTrSOwCKM10xLcsesvUQR61znsbrcwZ4U/QaqdymmvTqG5GMD7k2VFv9UG35C4dRy34Ag==
+  version "4.20.3"
+  resolved "https://registry.yarnpkg.com/tsx/-/tsx-4.20.3.tgz#f913e4911d59ad177c1bcee19d1035ef8dd6e2fb"
+  integrity sha512-qjbnuR9Tr+FJOMBqJCW5ehvIo/buZq7vH7qD7JziU98h6l3qGy0a/yPFjwO+y0/T7GFpNgNAvEcPPVfyT8rrPQ==
   dependencies:
     esbuild "~0.25.0"
     get-tsconfig "^4.7.5"
