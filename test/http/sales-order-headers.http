@@ -1,9 +1,14 @@
 @localhost=localhost:4004/odata/v4/main
 @id=c23a8804-d5a0-49fe-aa79-3a0a1aba2ca4
 @customerId=e3658bcd-2f99-47c7-ae07-0846f01ea7a8
-@productId=4a43aef4-24ad-4378-91b8-807707a1fade
+@customerIdV=13188374-7299-4cce-bc04-b18d1f3548ff
+@productId1=16569095-cebf-47fe-b199-b74a689dc76f
+# Sem estoque
+@productId2=14884777-50c9-45a0-ac1b-ff785704b620
 
-GET http://{{localhost}}/SalesOrderHeaders?$filter=id eq {{id}}&$expand=items
+
+GET http://{{localhost}}/SalesOrderHeaders
+ #?$filter=id eq {{id}}&$expand=items
 Content-Type: application/json
 
 ###
@@ -13,13 +18,13 @@ Content-Type: application/json
 
 {
     "id": "{{id}}",
-    "customer_id":"{{customerId}}",
+    "customer_id":"{{customerIdV}}",
     "totalAmount":398,
-    "items": [
+        "items": [
         {
             "id":"a95c1e7d-45d1-4409-90b9-725a962b9c09",
             "header_id":"{{id}}",
-            "product_id":"{{productId}}",
+            "product_id":"{{productId1}}",
             "quantity": 10,
             "price": 2.99
         },
@@ -27,7 +32,7 @@ Content-Type: application/json
         {
             "id":"34e9db1a-8799-4711-b83f-d60a148840fb",
             "header_id":"{{id}}",
-            "product_id":"{{productId}}",
+            "product_id":"{{productId2}}",
             "quantity": 20,
             "price": 4.99
         }        
@@ -36,7 +41,7 @@ Content-Type: application/json
 
 ###
 
-DELETE http://localhost:4004/odata/v4/main/SalesOrderHeaders(id={{id}})
+DELETE http://localhost:4004/odata/v4/main/SalesOrderHeaders(id={{customerIdV}})
 Content-Type: application/json
 
 ###
