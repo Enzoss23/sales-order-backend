@@ -32,7 +32,7 @@ export default (service: Service) => {
         if(!params.customer_id){
             return request.reject(400, 'Customer inválido');
         }
-        console.log(params)
+        // console.log(params)
         if( !params.items || params.items?.length === 0){
             return request.reject(400, 'Itens inválidos');
         }
@@ -54,6 +54,11 @@ export default (service: Service) => {
                 return request.reject(400, `Produto ${dbProduct.name}(${dbProduct.id}) sem estoque disponível!`);
             }
         }
+        let totalAmount = 0;
+        items.forEach(item => {
+            totalAmount += (item.price as number) * (item.quantity as number);
+        });
+        request.data.totalAmount = totalAmount; 
     });
     service.after('CREATE', 'SalesOrderHeaders', async (results: SalesOrderHeaders) => {
         const headerAsArray = Array.isArray(results) ? results : [results] as SalesOrderHeaders;

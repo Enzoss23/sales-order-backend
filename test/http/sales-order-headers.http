@@ -6,7 +6,6 @@
 # Sem estoque
 @productId2=14884777-50c9-45a0-ac1b-ff785704b620
 
-
 GET http://{{localhost}}/SalesOrderHeaders
  #?$filter=id eq {{id}}&$expand=items
 Content-Type: application/json
@@ -15,7 +14,7 @@ Authorization: Basic enzo:Inicial@12345
 
 POST http://localhost:4004/odata/v4/main/SalesOrderHeaders
 Content-Type: application/json
-Authorization: Basic erick:Inicial@54321
+Authorization: Basic enzo:Inicial@12345
 
 {
     "id": "{{id}}",
