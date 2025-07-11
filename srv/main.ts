@@ -1,15 +1,30 @@
-import cds, { Request, Service } from '@sap/cds';
+import cds, { db, Request, Service } from '@sap/cds';
 import { Customers, Product, Products, SalesOrderHeaders, SalesOrderItem, SalesOrderItems } from '@models/sales';
 
 
 export default (service: Service) => {
+    service.before('READ', '*', (request: Request) => {
+        console.log(request.user.is('read_only_user'));
+        console.log(request.user.id);
+        console.log(request.user.attr.id);
+        console.log(request.user.roles);
+        if(!request.user.is('read_only_user')) {
+            return request.reject(403, 'Não autorizado!');
+        }
+    });
+
+    service.before(['WRITE', 'DELETE'],'*', (request: Request) => {
+                if(!request.user.is('admin')) {
+            return request.reject(403, 'Não autorizado para escrever/deleta!');
+        }
+    })
     service.after('READ', 'Customers', (results: Customers) => {
         results.forEach(customer => {
             if(!customer.email?.includes('@')){
                 customer.email = `${customer.email}@gmail.com`;
             }
-            console.log(customer);
-        })
+            // console.log(customer);
+        });
     });
     service.before('CREATE', 'SalesOrderHeaders', async (request: Request) => {
         const params = request.data;
@@ -59,4 +74,5 @@ export default (service: Service) => {
 
         }
     });
+
 }

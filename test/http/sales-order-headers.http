@@ -10,11 +10,12 @@
 GET http://{{localhost}}/SalesOrderHeaders
  #?$filter=id eq {{id}}&$expand=items
 Content-Type: application/json
-
+Authorization: Basic enzo:Inicial@12345
 ###
 
 POST http://localhost:4004/odata/v4/main/SalesOrderHeaders
 Content-Type: application/json
+Authorization: Basic erick:Inicial@54321
 
 {
     "id": "{{id}}",
@@ -43,12 +44,12 @@ Content-Type: application/json
 
 DELETE http://localhost:4004/odata/v4/main/SalesOrderHeaders(id={{customerIdV}})
 Content-Type: application/json
-
+Authorization: Basic enzo:Inicial@12345
 ###
 
 PUT http://localhost:4004/odata/v4/main/SalesOrderHeaders(id={{id}})
 Content-Type: application/json
-
+Authorization: Basic enzo:Inicial@12345
 {
     "modifiedBy": "teste"
 }
@@ -86,33 +87,34 @@ Content-Type: application/json
 # Busca por pedidos maiores ou iguais a 2 milhões valor
 GET http://{{localhost}}/SalesOrderHeaders?$filter=totalAmount ge 2000000&$expand=items
 Content-Type: application/json
-
+Authorization: Basic enzo:Inicial@12345
 ###
 # Busca por pedidos maiores ou iguais a 200k valor
 GET http://{{localhost}}/SalesOrderHeaders?$filter=totalAmount le 200000&$expand=items
 Content-Type: application/json
-
+Authorization: Basic enzo:Inicial@12345
 ###
 # Expandindo os items, produto e customers
 GET http://{{localhost}}/SalesOrderHeaders?$filter=totalAmount ge 200000&$expand=items($expand=product;$filter=quantity le 30),customer
 Content-Type: application/json
-
+Authorization: Basic enzo:Inicial@12345
 ###
 # Selecionar somente customer e id do sales order header
 GET http://{{localhost}}/SalesOrderHeaders?$select=customer&$expand=customer($select=email)
 Content-Type: application/json
-
+Authorization: Basic enzo:Inicial@12345
 ###
 # Descobrindo a quantidade de registros
 GET http://{{localhost}}/SalesOrderHeaders/$count
 Content-Type: application/json
-
+Authorization: Basic enzo:Inicial@12345
 ###
 # Paginando os Registros
 GET http://{{localhost}}/SalesOrderHeaders?$skip=5&$top=3   
 Content-Type: application/json
-
+Authorization: Basic enzo:Inicial@12345
 ###
 # Buscando dados com $search
 GET http://{{localhost}}/SalesOrderHeaders?$search=org&$filter=totalAmount eq 12853185.15
 Content-Type: application/json
+Authorization: Basic enzo:Inicial@12345
