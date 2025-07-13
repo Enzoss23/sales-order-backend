@@ -19,29 +19,28 @@ Authorization: Basic enzo:Inicial@12345
 {
     "id": "{{id}}",
     "customer_id":"{{customerIdV}}",
-    "totalAmount":398,
         "items": [
         {
             "id":"a95c1e7d-45d1-4409-90b9-725a962b9c09",
             "header_id":"{{id}}",
             "product_id":"{{productId2}}",
             "quantity": 10,
-            "price": 2.99
+            "price": 1000
         },
 
         {
             "id":"34e9db1a-8799-4711-b83f-d60a148840fb",
             "header_id":"{{id}}",
             "product_id":"{{productId2}}",
-            "quantity": 20,
-            "price": 4.99
+            "quantity": 5,
+            "price": 5000
         }        
     ] 
 }
 
 ###
 
-DELETE http://localhost:4004/odata/v4/main/SalesOrderHeaders(id={{customerIdV}})
+DELETE http://localhost:4004/odata/v4/main/SalesOrderHeaders(id={{id}})
 Content-Type: application/json
 Authorization: Basic enzo:Inicial@12345
 ###
