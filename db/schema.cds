@@ -11,6 +11,13 @@ entity SalesOrderHeaders: managed {
         items: Composition of many SalesOrderItems on items.header = $self; //$self referenciando a propria entidade
 }
 
+entity SalesOrderLogs : managed {
+    key id: UUID;
+        header: Association to SalesOrderHeaders;
+        userData: LargeString;
+        orderData: LargeString;
+}
+
 entity SalesOrderItems {
     key id: UUID;
         header: Association to SalesOrderHeaders;

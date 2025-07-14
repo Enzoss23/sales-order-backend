@@ -1,14 +1,8 @@
 import cds, { db, Request, Service } from '@sap/cds';
 import { Customers, Product, Products, SalesOrderHeaders, SalesOrderItem, SalesOrderItems } from '@models/sales';
-import { transferableAbortSignal } from 'util';
-
 
 export default (service: Service) => {
     service.before('READ', '*', (request: Request) => {
-        console.log(request.user.is('read_only_user'));
-        console.log(request.user.id);
-        console.log(request.user.attr.id);
-        console.log(request.user.roles);
         if(!request.user.is('read_only_user')) {
             return request.reject(403, 'Não autorizado!');
         }
@@ -67,9 +61,9 @@ export default (service: Service) => {
         console.log(`Depois do desconto: ${totalAmount}`);
         request.data.totalAmount = totalAmount; 
     });
-    service.after('CREATE', 'SalesOrderHeaders', async (results: SalesOrderHeaders) => {
-        const headerAsArray = Array.isArray(results) ? results : [results] as SalesOrderHeaders;
-        for (const header of headerAsArray){
+    service.after('CREATE', 'SalesOrderHeaders', async (results: SalesOrderHeaders, request: Request) => {
+        const headersAsArray = Array.isArray(results) ? results : [results] as SalesOrderHeaders;
+        for (const header of headersAsArray){
             const items = header.items as SalesOrderItems;
             const productsData = items.map(item => ({
                 id: item.product_id as string,
@@ -83,8 +77,14 @@ export default (service: Service) => {
                 foundProduct.stock = (foundProduct.stock as number) - productData.quantity;
                 await cds.update('sales.Products').where({ id: foundProduct.id }).with({ stock: foundProduct.stock });
             }
-
+            const headersAsArray = JSON.stringify(header);
+            const userAsString = JSON.stringify(request.user);
+            const logs = [{
+                header_id: header.id,
+                userData: userAsString,
+                orderData: headersAsArray
+            }];
+            await cds.create('sales.SalesOrderLogs').entries(logs);
         }
     });
-
 }
