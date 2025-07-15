@@ -1,5 +1,8 @@
 import cds, { db, Request, Service } from '@sap/cds';
 import { Customers, Product, Products, SalesOrderHeaders, SalesOrderItem, SalesOrderItems } from '@models/sales';
+import { CustomerServiceImpl } from './services/customer/implemetation';
+import { customerController } from './factories/services/controllers/customer';
+import { FullRequestParams } from './protocols';
 
 export default (service: Service) => {
     service.before('READ', '*', (request: Request) => {
@@ -7,19 +10,15 @@ export default (service: Service) => {
             return request.reject(403, 'Não autorizado!');
         }
     });
-
     service.before(['WRITE', 'DELETE'],'*', (request: Request) => {
                 if(!request.user.is('admin')) {
             return request.reject(403, 'Não autorizado para escrever/deleta!');
         }
     })
-    service.after('READ', 'Customers', (results: Customers) => {
-        results.forEach(customer => {
-            if(!customer.email?.includes('@')){
-                customer.email = `${customer.email}@gmail.com`;
-            }
-            // console.log(customer);
-        });
+    service.after('READ', 'Customers', (customerList: Customers, request) => {
+
+        ( request as unknown as FullRequestParams<Customers>).results = customerController.afterRead(customerList);
+        
     });
     service.before('CREATE', 'SalesOrderHeaders', async (request: Request) => {
         const params = request.data;
